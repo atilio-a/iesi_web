@@ -1,0 +1,110 @@
+:root {
+    --iesi-bg: #f8f6f2;
+    --iesi-red: #e8a1a1;
+    --iesi-orange: #f6c49a;
+    --iesi-yellow: #f5e6a3;
+    --iesi-green: #b8e0c2;
+    --iesi-blue: #afc8e6;
+    --iesi-purple: #d4b8e6;
+    --iesi-card: #ffffff;
+    --iesi-text: #3a3a3a;
+}
+
+body {
+    background: var(--iesi-bg);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    color: var(--iesi-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+    font-family: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+.iesi-navbar {
+    background: var(--iesi-blue);
+}
+
+.btn-iesi {
+    background: var(--iesi-green);
+    border: none;
+    color: #2f2f2f;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-radius: 999px;
+    padding: 0.6rem 1.6rem;
+}
+
+.btn-iesi:hover,
+.btn-iesi:focus {
+    background: var(--iesi-orange);
+    transform: translateY(-1px);
+}
+
+.btn-iesi-outline {
+    border: 1px solid rgba(58, 58, 58, 0.2);
+    color: #3a3a3a;
+    border-radius: 999px;
+    padding: 0.55rem 1.4rem;
+    transition: all 0.2s ease;
+}
+
+.btn-iesi-outline:hover {
+    background: var(--iesi-yellow);
+}
+
+.iesi-section {
+    padding: 4rem 0;
+}
+
+.iesi-card {
+    background: var(--iesi-card);
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 24px rgba(60, 60, 60, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.iesi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgba(60, 60, 60, 0.12);
+}
+
+.section-divider {
+    height: 38px;
+    background: url("/images/patterns/andean-divider.svg") center/contain repeat-x;
+    opacity: 0.6;
+}
+
+.badge-iesi {
+    background: var(--iesi-yellow);
+    color: #3a3a3a;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon-pill {
+    background: var(--iesi-purple);
+    color: #2f2f2f;
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+}
