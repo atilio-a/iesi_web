@@ -16,20 +16,27 @@ class HomeController extends Controller
 
         $careers = [
             [
-                'slug' => 'educacion-intercultural',
-                'name' => 'Tecnicatura en Educación Intercultural',
-                'summary' => 'Formación docente con enfoque comunitario.',
+                'slug' => 'emprendedurismo-intercultural',
+                'name' => 'Tecnicatura Superior en Emprendedurismo',
+                'summary' => 'Liderar la innovación comercial promoviendo el desarrollo sustentable.',
+             
             ],
             [
-                'slug' => 'gestion-cultural',
-                'name' => 'Tecnicatura en Gestión Cultural',
-                'summary' => 'Promoción del patrimonio y la diversidad.',
+                'slug' => 'comunitario-turismo',
+                'name' => 'Tecnicatura Superior en Guía de Turismo Comunitario',
+                'summary' => 'Informar, orientar, guiar a visitantes, protegiendo el patrimonio cultural y natural.',
+              
             ],
             [
-                'slug' => 'turismo-comunitario',
-                'name' => 'Tecnicatura en Turismo Comunitario',
-                'summary' => 'Turismo sostenible con identidad territorial.',
-            ],
+               'slug' => 'derechos-comunitario',
+                'name' => 'Tecnicatura Superior en Derechos Humanos',
+                'summary' => 'Formar profesionales capaces de promover, proteger y difundir los derechos humanos.',
+           ],
+           [
+                'slug' => 'emergencias-y-salud-comunitario',
+                'name' => 'Tecnicatura Superior en Gestión y Prevención de Emergencias',
+                'summary' => 'Gestiona, previene, responde: ¡Lidera la protección de vidas y la comunidad!',
+           ],
         ];
 
         return view('home', compact('featuredNews', 'featuredStories', 'libraryHighlights', 'careers'));

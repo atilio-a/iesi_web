@@ -5,7 +5,7 @@
     <div class="iesi-card p-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h1 class="h5 font-heading mb-0">Historias</h1>
-            <a href="#" class="btn btn-iesi btn-sm">Nueva historia</a>
+            <a href="{{ route('admin.stories.create') }}" class="btn btn-iesi btn-sm">Nueva historia</a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -14,6 +14,7 @@
                         <th>Título</th>
                         <th>Tipo</th>
                         <th>Fecha</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,9 @@
                             <td class="fw-semibold">{{ $story->title }}</td>
                             <td>{{ ucfirst($story->type) }}</td>
                             <td>{{ optional($story->published_at)->format('d/m/Y') }}</td>
+                            <td class="text-end">
+                                <a href="{{ route('admin.stories.edit', $story) }}" class="btn btn-sm btn-iesi-outline">Editar</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

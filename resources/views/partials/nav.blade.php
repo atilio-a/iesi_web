@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light iesi-navbar py-3">
     <div class="container">
-        <a class="navbar-brand fw-semibold text-dark" href="{{ route('home') }}">
-            {{ config('app.name') }}
+        <a class="navbar-brand fw-semibold text-dark d-flex align-items-center gap-2" href="{{ route('home') }}">
+            <img src="{{ asset('images/logo_iesi.png') }}" alt="Logo IESI" class="iesi-logo">
+            <span>{{ config('app.name') }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#iesiNavbar" aria-controls="iesiNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

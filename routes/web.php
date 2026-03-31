@@ -58,6 +58,11 @@ Route::middleware(['auth', 'role:administrator,editor'])->prefix('admin')->name(
     Route::put('/noticias/{news}', [AdminNewsController::class, 'update'])->name('news.update');
     Route::delete('/noticias/{news}', [AdminNewsController::class, 'destroy'])->name('news.destroy');
     Route::get('/historias', [AdminStoriesController::class, 'index'])->name('stories.index');
+    Route::get('/historias/crear', [AdminStoriesController::class, 'create'])->name('stories.create');
+    Route::post('/historias', [AdminStoriesController::class, 'store'])->name('stories.store');
+    Route::get('/historias/{story}/editar', [AdminStoriesController::class, 'edit'])->name('stories.edit');
+    Route::put('/historias/{story}', [AdminStoriesController::class, 'update'])->name('stories.update');
+    Route::delete('/historias/{story}', [AdminStoriesController::class, 'destroy'])->name('stories.destroy');
     Route::get('/biblioteca', [AdminLibraryController::class, 'index'])->name('library.index');
     Route::get('/egresados', [AdminGraduatesController::class, 'index'])->name('graduates.index');
     Route::get('/productos', [AdminProductsController::class, 'index'])->name('products.index');

@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="iesi-card overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1470019693664-1d202d2c0907?auto=format&fit=crop&w=1200&q=80" alt="Comunidades indígenas" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
+                        <img src="{{ asset('images/IESI4.PNG') }}" alt="Comunidades indígenas" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="iesi-card p-3 text-center">
-                                <div class="h4 font-heading mb-1">3</div>
+                                <div class="h4 font-heading mb-1">4</div>
                                 <div class="small text-muted">Carreras activas</div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="row g-4">
                 @foreach ($careers as $career)
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <x-career-card :career="$career" />
                     </div>
                 @endforeach

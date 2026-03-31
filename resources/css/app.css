@@ -108,3 +108,14 @@ h6,
     padding: 0.25rem 0.6rem;
     font-size: 0.75rem;
 }
+
+.iesi-logo {
+    height: 40px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .iesi-logo {
+        height: 30px;
+    }
+}
