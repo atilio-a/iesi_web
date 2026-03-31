@@ -8,7 +8,7 @@
 @section('meta_description', Str::limit(strip_tags($story->content), 160))
 @section('og_title', $story->title)
 @section('og_description', Str::limit(strip_tags($story->content), 160))
-@section('og_image', $story->featured_image ?? asset('images/og-default.svg'))
+@section('og_image', $story->featured_image_url ?? asset('images/og-default.svg'))
 @section('content')
     <section class="iesi-section">
         <div class="container" style="max-width: 860px;">
@@ -17,7 +17,7 @@
             <div class="text-muted small">
                 {{ optional($story->author)->name ?? 'Equipo IESI' }} · {{ optional($story->published_at)->format('d/m/Y') }}
             </div>
-            <img src="{{ $story->featured_image ?? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80' }}" alt="{{ $story->title }}" class="w-100 mt-4 rounded-4" style="height: 360px; object-fit: cover;" loading="lazy" />
+            <img src="{{ $story->featured_image_url ?? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80' }}" alt="{{ $story->title }}" class="w-100 mt-4 rounded-4" style="height: 360px; object-fit: cover;" loading="lazy" />
             <article class="mt-4 text-muted">
                 {!! nl2br(e($story->content)) !!}
             </article>

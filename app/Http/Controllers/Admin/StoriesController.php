@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StoriesController extends Controller
@@ -31,15 +32,13 @@ class StoriesController extends Controller
     {
         $data = $this->validatedData($request);
         $data['author_id'] = Auth::id();
+        $data['featured_image'] = $this->storeFeaturedImage($request);
 
-        if ($request->hasFile('featured_image')) {
-            $path = $request->file('featured_image')->store('stories', 'public');
-            $data['featured_image'] = asset('storage/'.$path);
-        }
+        $story = Story::create($data);
 
-        Story::create($data);
-
-        return redirect()->route('admin.stories.index');
+        return redirect()
+            ->route('admin.stories.edit', $story)
+            ->with('status', 'Historia creada correctamente.');
     }
 
     public function update(Request $request, Story $story)
@@ -47,13 +46,15 @@ class StoriesController extends Controller
         $data = $this->validatedData($request, $story->id);
 
         if ($request->hasFile('featured_image')) {
-            $path = $request->file('featured_image')->store('stories', 'public');
-            $data['featured_image'] = asset('storage/'.$path);
+            $this->deleteFeaturedImage($story->featured_image);
+            $data['featured_image'] = $this->storeFeaturedImage($request);
         }
 
         $story->update($data);
 
-        return redirect()->route('admin.stories.index');
+        return redirect()
+            ->route('admin.stories.edit', $story)
+            ->with('status', 'Imagen e información actualizadas correctamente.');
     }
 
     public function destroy(Story $story)
@@ -72,10 +73,13 @@ class StoriesController extends Controller
             'content' => ['required', 'string'],
             'video_url' => ['nullable', 'url'],
             'audio_url' => ['nullable', 'url'],
-            'featured_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'is_featured' => ['nullable', 'boolean'],
             'published_at' => ['nullable', 'date'],
         ];
+
+        $request->validate([
+            'featured_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:4096'],
+        ]);
 
         $data = $request->validate($rules);
 
@@ -86,5 +90,28 @@ class StoriesController extends Controller
         $data['is_featured'] = $request->boolean('is_featured');
 
         return $data;
+    }
+
+    protected function storeFeaturedImage(Request $request): ?string
+    {
+        if (! $request->hasFile('featured_image')) {
+            return null;
+        }
+
+        return $request->file('featured_image')->store('stories', 'public');
+    }
+
+    protected function deleteFeaturedImage(?string $url): void
+    {
+        if (! $url) {
+            return;
+        }
+
+        $prefix = asset('storage/');
+        $path = str_starts_with($url, $prefix)
+            ? Str::after($url, $prefix)
+            : $url;
+
+        Storage::disk('public')->delete($path);
     }
 }

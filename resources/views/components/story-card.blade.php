@@ -2,7 +2,7 @@
 
 @php
     use Illuminate\Support\Str;
-    $image = $story->featured_image ?? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80';
+    $image = $story->featured_image_url ?? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80';
 @endphp
 
 <div class="iesi-card h-100 position-relative fade-in-up">
