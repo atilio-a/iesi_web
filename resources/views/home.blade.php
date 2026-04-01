@@ -9,7 +9,7 @@
                     <span class="badge-iesi">Instituto Intercultural de Jujuy</span>
                     <h1 class="display-5 font-heading mt-3">Formación superior con identidad cultural y comunidad</h1>
                     <p class="lead text-muted">
-                        El IESI Jujuy promueve una educación intercultural que fortalece los saberes de los pueblos originarios, el territorio y el compromiso social.
+                        El IESI Jujuy promueve la educación intercultural que fortalece los saberes de los pueblos originarios, el territorio y el compromiso social.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
                         <a href="{{ route('institution') }}" class="btn btn-iesi">Conocer el instituto</a>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="iesi-card overflow-hidden">
-                        <img src="{{ asset('images/IESI4.PNG') }}" alt="Comunidades indígenas" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
+                        <img src="{{ asset('images/IESI4.PNG') }}" alt="Comunidades indígenas jujuy" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
                     </div>
                 </div>
             </div>
