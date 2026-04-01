@@ -107,10 +107,11 @@ class StoriesController extends Controller
             return;
         }
 
-        $prefix = asset('storage/');
-        $path = str_starts_with($url, $prefix)
-            ? Str::after($url, $prefix)
-            : $url;
+        $path = $url;
+        if (Str::startsWith($path, ['http://', 'https://'])) {
+            $parsed = parse_url($path, PHP_URL_PATH);
+            $path = is_string($parsed) ? preg_replace('#^/storage/#', '', $parsed) : $path;
+        }
 
         Storage::disk('public')->delete($path);
     }

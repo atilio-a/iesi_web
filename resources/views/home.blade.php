@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="iesi-card overflow-hidden">
-                        <img src="{{ asset('images/IESI4.PNG') }}" alt="Comunidades indígenas jujuy" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
+                        <img src="{{ asset('images/iesi4.png') }}" alt="Comunidades indígenas jujuy" class="w-100" style="height: 360px; object-fit: cover;" loading="lazy">
                     </div>
                 </div>
             </div>

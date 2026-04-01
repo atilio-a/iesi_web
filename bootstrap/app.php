@@ -11,6 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Detrás de Nginx/Apache con SSL o balanceador, para que asset() y url() usen HTTPS correctamente.
+        $middleware->trustProxies(at: '*');
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);

@@ -7,6 +7,8 @@ use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -38,8 +40,7 @@ class NewsController extends Controller
         $data = $this->validatedData($request);
 
         if ($request->hasFile('featured_image')) {
-            $path = $request->file('featured_image')->store('news', 'public');
-            $data['featured_image'] = asset('storage/'.$path);
+            $data['featured_image'] = $request->file('featured_image')->store('news', 'public');
         }
 
         $news = News::create($data);
@@ -56,8 +57,8 @@ class NewsController extends Controller
         $data = $this->validatedData($request, $news->id);
 
         if ($request->hasFile('featured_image')) {
-            $path = $request->file('featured_image')->store('news', 'public');
-            $data['featured_image'] = asset('storage/'.$path);
+            $this->deleteFeaturedImage($news->featured_image);
+            $data['featured_image'] = $request->file('featured_image')->store('news', 'public');
         }
 
         $news->update($data);
@@ -73,9 +74,25 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
+        $this->deleteFeaturedImage($news->featured_image);
         $news->delete();
 
         return redirect()->route('admin.news.index');
+    }
+
+    protected function deleteFeaturedImage(?string $value): void
+    {
+        if (! $value) {
+            return;
+        }
+
+        $path = $value;
+        if (Str::startsWith($path, ['http://', 'https://'])) {
+            $parsed = parse_url($path, PHP_URL_PATH);
+            $path = is_string($parsed) ? preg_replace('#^/storage/#', '', $parsed) : $path;
+        }
+
+        Storage::disk('public')->delete($path);
     }
 
     protected function validatedData(Request $request, ?int $ignoreId = null): array

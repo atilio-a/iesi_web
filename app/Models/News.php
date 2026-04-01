@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class News extends Model
 {
@@ -41,5 +42,24 @@ class News extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function getFeaturedImageUrlAttribute(): ?string
+    {
+        if (! $this->featured_image) {
+            return null;
+        }
+
+        if (Str::startsWith($this->featured_image, ['http://', 'https://'])) {
+            $path = parse_url($this->featured_image, PHP_URL_PATH);
+
+            if (is_string($path) && preg_match('#/storage/(.+)$#', $path, $m)) {
+                return asset('storage/'.$m[1]);
+            }
+
+            return $this->featured_image;
+        }
+
+        return asset('storage/'.$this->featured_image);
     }
 }

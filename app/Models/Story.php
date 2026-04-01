@@ -40,6 +40,12 @@ class Story extends Model
         }
 
         if (Str::startsWith($this->featured_image, ['http://', 'https://'])) {
+            $path = parse_url($this->featured_image, PHP_URL_PATH);
+
+            if (is_string($path) && preg_match('#/storage/(.+)$#', $path, $m)) {
+                return asset('storage/'.$m[1]);
+            }
+
             return $this->featured_image;
         }
 
